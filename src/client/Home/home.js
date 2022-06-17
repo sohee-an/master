@@ -3,17 +3,18 @@ import {useState} from 'react';
 import './Home.css';
 import { BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 
-import ShopNavbar from '../component/navbar'
+
 import  HomeContents from './homeContents'
 import  shoesData from '../contents/data'
-import Details from '../contents/detail';
 
 
 
 
 
-function Home(){
-    const [shoes,setShoes]=useState(shoesData)
+
+function Home({shoes}){
+     
+   // const [shoes,setShoes]=useState(shoesData)
     return(
         <>
         {
@@ -23,6 +24,7 @@ function Home(){
                 )
             })
         }
+        
             </>
     )
 

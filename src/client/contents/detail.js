@@ -1,5 +1,10 @@
+import {useParams,useNavigate} from "react-router-dom";
 
-function Details(props){
+
+function Details({shoes}){
+ let {id}=useParams();
+ let navigate=useNavigate();
+  
     return (
         <>
        <div className="container">
@@ -9,12 +14,14 @@ function Details(props){
     </div>
     <div className="col-md-6">
       <h4 className="pt-5">상품명</h4>
-      <p>상품설명</p>
-      <p>120000원</p>
+      <p >{shoes[id].title}</p>
+      <p>{shoes[id].price}</p>
       <button className="btn btn-danger">주문하기</button> 
     </div>
   </div>
 </div> 
+
+
         </>
     )
 }
