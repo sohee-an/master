@@ -1,0 +1,64 @@
+@import '../common/sidebar/sidebar.css';
+@import '../common/navbar/navbar.css';
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+nav {
+  border-bottom: 3px solid black;
+}
+
+.navbar-start {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.brandname {
+  font-family: 'Limelight', cursive;
+  font-size: 24px;
+}
+
+.mainpagecontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.left,
+.right {
+  position: relative;
+  transition: all 0.3s;
+}
+
+.left p,
+.right p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 700;
+  color: aliceblue;
+}
+
+.left:hover,
+.right:hover {
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 1024px) {
+  .allcontainer {
+    display: flex;
+  }
+
+  .outercontainer {
+    display: flex;
+  }
+
+  .topcontainer {
+    display: flex;
+  }
+
+  .bottomcontainer {
+    display: flex;
+  }
+}

@@ -1,0 +1,48 @@
+@import '../common/sidebar/sidebar.css';
+@import '../common/navbar/navbar.css';
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+body {
+  margin-top: 67px;
+}
+
+nav {
+  border-bottom: 3px solid black;
+}
+
+.navbar-start {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.brandname {
+  font-family: 'Limelight', cursive;
+  font-size: 24px;
+}
+
+.login-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+
+.login-form-box {
+  width: 30rem;
+}
+
+.login-form-box .title {
+  text-align: center;
+}
+
+.login-form-box .button {
+  font-weight: bold;
+}
+
+.link-small {
+  display: block;
+  width: fit-content;
+  margin: 24px auto 0;
+  font-size: 0.8rem;
+  text-decoration: underline;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>쇼핑-3팀</title>
+  <!-- 아이콘 -->
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/elice-rabbit-favicon.png" />
+  <!-- bulma css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <!-- 폰트 어썸: 아이콘 -->
+  <script defer src="https://kit.fontawesome.com/7630448495.js" crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+  <!-- daum 주소 api -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <!-- 커스텀 css, js -->
+  <link rel="stylesheet" href="order.css" />
+  <script src="order.js" type="module" defer></script>
+  <script src="../daum-api/daum-api.js"></script>
+
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container mt-3">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img src="" alt="">
+          <span class="has-text-link brandname">SHOPAHOLIC</span>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="/products/#/?lc=men">
+              MEN
+            </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/products/#/?lc=men&mc=outer">
+                OUTER
+              </a>
+              <a class="navbar-item" href="/products/#/?lc=men&mc=top">
+                TOP
+              </a>
+              <a class="navbar-item" href="/products/#/?lc=men&mc=bottom">
+                BOTTOM
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="/products/#/?lc=men">
+              WOMEN
+            </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/products/#/?lc=women&mc=outer">
+                OUTER
+              </a>
+              <a class="navbar-item" href="/products/#/?lc=women&mc=top">
+                TOP
+              </a>
+              <a class="navbar-item" href="/products/#/?lc=women&mc=bottom">
+                BOTTOM
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
+          <!-- 로그인 안했을 때 -->
+          <ul id="navbar" class="login-hidden">
+            <li><a href="/products">VIEW ALL</a></li>
+            <li><a href="/login">로그인</a></li>
+            <li><a href="/register">회원가입</a></li>
+            <li>
+              <a href="/cart" aria-current="page">
+                <span class="icon">
+                  <i class="fas fa-cart-shopping"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <!-- 로그인 했을 때 -->
+          <ul id="navbar" class="logout-hidden hidden">
+            <li><a href="/products">VIEW ALL</a></li>
+            <li><a href="/users">계정관리</a></li>
+            <li><a class="logout-btn" href="/">로그아웃</a></li>
+            <li>
+              <a href="/cart" aria-current="page">
+                <span class="icon">
+                  <i class="fas fa-cart-shopping"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 사이드 메뉴 -->
+  <aside class="side-menu hidden">
+    <h3 class="sr-only">사이드 메뉴</h3>
+    <div class="top">
+      <i class="fa-duotone fa-x"></i>
+    </div>
+    <ul class="login-hidden">
+      <!-- 로그인 안했을 때 -->
+      <li><a href="/products">VIEW ALL</a></li>
+      <li><a href="/register">회원가입</a></li>
+      <li><a href="/login">로그인</a></li>
+      <li><a href="/cart">카트</a></li>
+    </ul>
+    <ul class="logout-hidden">
+      <!-- 로그인 했을 때 -->
+      <li><a href="/products">VIEW ALL</a></li>
+      <li><a href="/users">계정관리</a></li>
+      <li><a class="logout-btn" href="/">로그아웃</a></li>
+      <li><a href="/cart">카트</a></li>
+    </ul>
+  </aside>
+
+  <!--- 결제 구현 --->
+  <div class="div-container">
+    <div class="order-header" id="processDiv">
+      <span onclick="location.href='/cart'"> 장바구니 &gt; </span>
+      <span style="font-size: 30px;"> 주문 결제 </span>
+      <span> &gt; 주문완료 </span>
+    </div>
+    <div class="order-body">
+      <!-- 배송 정보 -->
+      <div id="delivery-form">
+        <form>
+          <div class="delivery-info" id="deliveryinfoDiv">
+            <a href="" id="get-contents"> 회원정보 가져오기 </a>
+            <ol id="delivery-info-list" style="list-style: none;">
+              <li>
+                <p>이름</p>
+                <input type="text" name="name" id="d-name" placeholder="받는 분 이름을 입력해 주세요." name="" />
+              </li>
+              <li>
+                <p>연락처</p>
+                <input type="text" name="phoneNumber" id="d-phoneNumber" placeholder="-없이 입력해 주세요." name="">
+              </li>
+              <li>
+                <p>주소</p>
+                <div>
+                  <input type="text" name="postcode" id="sample4_postcode" placeholder="주소찾기를 클릭해 주세요."
+                    style="width: 70%" readonly>
+                  <input type="button" value="주소찾기" style="width: 20%" id="findPostcode"
+                    onclick="sample4_execDaumPostcode()"><br>
+                  <input type="text" name="address" id="sample4_roadAddress" readonly><br>
+                  <input type="text" name="detailAdress" id="sample4_detailAddress">
+                </div>
+              </li>
+              <li>
+                <p>요청사항</p>
+                <select name="requests" id="d-requests" form="form id">
+                  <option value=" ">배송시 요청사항을 선택해 주세요.</option>
+                  <option value="직접 수령하겠습니다.">직접 수령하겠습니다.</option>
+                  <option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+                  <option value="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
+                  <option value="부재 시 문앞에 놓아주세요.">부재 시 문앞에 놓아주세요.</option>
+                  <option value="부재 시 택배함에 넣어주세요.">부재 시 택배함에 넣어주세요.</option>
+                  <option value="userinput">직접 입력</option>
+                </select>
+                <input type="text" class="user-input-hide" id="d-requests-input" placeholder="요청 사항을 입력하세요 (20자 이내)"
+                  maxlength=20>
+              </li>
+            </ol>
+          </div>
+        </form>
+      </div>
+
+      <!-- 결제정보 -->
+      <div class="order-summary" id="summaryDiv">
+        <h3> 결제정보 </h3>
+        <table id="ordersummary-table">
+          <tbody>
+            <tr>
+              <td align="left">상품수</td>
+              <td align="right" id="d-amount"></td>
+            </tr>
+            <tr>
+              <td align="left">상품금액</td>
+              <td align="right" id="d-price"></td>
+            </tr>
+            <tr>
+              <td align="left">배송비</td>
+              <td align="right" id="d-shipping"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="p-total">
+          <p>총 결제금액 </p>
+          <p id="d-total-price" align="right"> </p>
+        </div>
+        <input type="button" value="결제하기" id="purchase-btn" form="delivery-form">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

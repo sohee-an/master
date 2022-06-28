@@ -1,0 +1,53 @@
+@import '../common/sidebar/sidebar.css';
+@import '../common/navbar/navbar.css';
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+body {
+  margin-top: 67px;
+}
+
+nav {
+  border-bottom: 3px solid black;
+}
+
+.navbar-start {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.brandname {
+  font-family: 'Limelight', cursive;
+  font-size: 24px;
+}
+
+.register-user-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.register-user-form-box {
+  width: 30rem;
+}
+
+.register-user-form-box .title {
+  text-align: center;
+}
+
+.register-user-form-box .button {
+  font-weight: bold;
+}
+
+.register-user-form-box .input:focus {
+  border-color: #00d1b2;
+  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+}
+
+.field-wrapper {
+  display: flex;
+}
+
+.field-wrapper .input {
+  margin-right: 12px;
+}

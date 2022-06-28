@@ -1,0 +1,81 @@
+import { sidebar } from '../common/sidebar/sidebar.js';
+import { changeNavbar, handleLogoutBtn } from "../../common/navbar/navbar.js";
+import * as Api from '../api.js';
+import { validateEmail } from '../useful-functions.js';
+
+// 요소(element), input 혹은 상수
+const fullNameInput = document.querySelector('#fullNameInput');
+const emailInput = document.querySelector('#emailInput');
+const passwordInput = document.querySelector('#passwordInput');
+const passwordConfirmInput = document.querySelector('#passwordConfirmInput');
+const postalCodeInput = document.querySelector("#sample4_postcode");
+const address1Input = document.querySelector("#sample4_roadAddress");
+const address2Input = document.querySelector("#sample4_detailAddress");
+const phoneNumberInput = document.querySelector("#phoneNumber");
+const submitButton = document.querySelector('#submitButton');
+
+addAllElements();
+addAllEvents();
+sidebar();
+changeNavbar();
+handleLogoutBtn();
+
+// 로그인 되어있으면 메인페이지로..
+if (localStorage.getItem("token")) {
+  window.location.href = "/";
+}
+
+// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+async function addAllElements() { }
+
+// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+function addAllEvents() {
+  submitButton.addEventListener('click', handleSubmit);
+}
+
+// 회원가입 진행
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const fullName = fullNameInput.value;
+  const email = emailInput.value;
+  const password = passwordInput.value;
+  const passwordConfirm = passwordConfirmInput.value;
+  const postalCode = postalCodeInput.value;
+  const address1 = address1Input.value;
+  const address2 = address2Input.value;
+  const phoneNumber = phoneNumberInput.value;
+
+  // 잘 입력했는지 확인
+  const isFullNameValid = fullName.length >= 2;
+  const isEmailValid = validateEmail(email);
+  const isPasswordValid = password.length >= 4;
+  const isPasswordSame = password === passwordConfirm;
+
+  if (!isFullNameValid || !isPasswordValid) {
+    return alert('이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.');
+  }
+
+  if (!isEmailValid) {
+    return alert('이메일 형식이 맞지 않습니다.');
+  }
+
+  if (!isPasswordSame) {
+    return alert('비밀번호가 일치하지 않습니다.');
+  }
+
+  // 회원가입 api 요청
+  try {
+    const data = { fullName, email, password, address: { postalCode, address1, address2 }, phoneNumber };
+
+    await Api.post('/api/register', data);
+
+    alert(`정상적으로 회원가입되었습니다.`);
+
+    // 로그인 페이지 이동
+    window.location.href = '/login';
+  } catch (err) {
+    console.error(err.stack);
+    console.log(err.message);
+  }
+}

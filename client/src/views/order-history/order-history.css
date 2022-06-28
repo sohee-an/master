@@ -1,0 +1,171 @@
+@import "../../common/sidebar/sidebar.css";
+@import '../../common/navbar/navbar.css';
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+nav {
+  border-bottom: 3px solid black;
+}
+
+.navbar-start {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.brandname {
+  font-family: 'Limelight', cursive;
+  font-size: 24px;
+}
+
+.div-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5em;
+  margin-left: 5%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 85%;
+  height: auto;
+}
+
+/* 주문조회 테이블 상단바 */
+.order-header {
+  width: 100%;
+  margin: 30px;
+  padding: 20px;
+  display: flex;
+  flex: row;
+  text-align: bottom;
+  border-bottom: 1px solid grey;
+  border-collapse: collapse;
+}
+
+
+.order-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.order-iteminfo {
+  width: 100%;
+}
+
+.o-list-header {
+  display: flex;
+  flex-direction: row;
+  background-color: grey;
+  width: 100%;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  padding: 1em;
+}
+
+.order {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.o-list-main,
+.product-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  border-bottom: grey 2px;
+  padding: 0.7em;
+}
+
+.product-header {
+  background-color: black;
+  color: white;
+  height: 3em;
+}
+
+.o-list-main div,
+.o-list-header div,
+.product-header div {
+  width: 25%;
+}
+
+.o-list-specific {
+  display: none;
+  width: 100%;
+  border: black 3px;
+}
+
+.product-footer {
+  border-bottom: solid black 3px;
+  padding: 1rem;
+  text-align: right;
+}
+
+.product-div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border: black 3px;
+}
+
+.p-img {
+  width: 10rem;
+}
+
+.p-contents {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: right;
+  padding: 1em;
+}
+
+.p-review {
+  width: 20%;
+}
+
+.p-info {
+  width: 75%;
+}
+
+
+.product {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  border: black 3px;
+  border-collapse: collapse;
+}
+
+.order :hover {
+  background-color: lightgrey;
+}
+
+/* 상품별 상세 정보 */
+.productImg {
+  width: 10rem;
+}
+
+.cancel-order-btn {
+  width: 5em;
+  height: 2em;
+}
+
+.reviewBtn {
+  height: 4rem;
+  border: none;
+}
+
+.reviewBtn :hover {
+  height: 5rem;
+  border: none;
+  color: aquamarine;
+}

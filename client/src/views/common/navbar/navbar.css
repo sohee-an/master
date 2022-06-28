@@ -1,0 +1,9 @@
+.hidden {
+    display: none !important;
+}
+
+@media screen and (max-width: 1024px) {
+    #navbar {
+        display: none;
+    }
+}

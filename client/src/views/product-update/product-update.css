@@ -1,0 +1,93 @@
+@import '../../common/sidebar/sidebar.css';
+@import '../../common/navbar/navbar.css';
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+body {
+  margin-top: 67px;
+}
+
+.navbar {
+  border-bottom: 3px solid black;
+}
+
+.navbar-start {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.brandname {
+  font-family: 'Limelight', cursive;
+  font-size: 24px;
+}
+
+.account-header {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  padding-bottom: 0.7rem;
+}
+
+.heading {
+  font-size: .8rem;
+}
+
+.tag {
+  border: none;
+  cursor: pointer;
+}
+
+.orders-container {
+  margin: 5rem 60px 2rem;
+}
+
+.orders-top {
+  border-bottom: 1px solid #aaa;
+  padding: 0;
+  text-align: center;
+}
+
+.orders-item {
+  align-items: center;
+  text-align: center;
+}
+
+.orders-item .column {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.orders-item:not(:last-child) {
+  border-bottom: 1px solid #bbb;
+}
+
+.form-content {
+  position: absolute;
+  top: 0;
+  margin: 50px 0;
+  width: 40rem;
+  z-index: 30;
+  overflow: auto;
+}
+
+.form-container.is-active .form-content {
+  max-height: calc(100vh - 100px);
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+
+.form-container.is-active .form-content::-webkit-scrollbar {
+  display: none;
+}
+
+.form-content .title {
+  text-align: center;
+}
+
+.form-box {
+  padding: 40px;
+}
+
+.scroll-lock {
+  position: fixed;
+  overflow: hidden;
+}
