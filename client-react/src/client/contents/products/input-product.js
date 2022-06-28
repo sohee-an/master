@@ -1,7 +1,8 @@
-import {useNavigate,Qutlet,useParams} from 'react-router-dom';
+//import {useNavigate,Qutlet,useParams} from 'react-router-dom';
 import {useRef,useEffect} from "react";
 import Form from 'react-bootstrap/Form';
 import axios from 'axios'
+import Dropzone from 'react-dropzone';
 
 
 // 이걸 눌렀을때 
@@ -18,22 +19,23 @@ function InputProduct(){
     const category={category:categoryRef.current.value}
     const price ={price:priceRef.current.value};
     const priceConsulation={priceConsulation:priceConsulationRef.current.value}
-  
+    const img={imgRef:imgRef.current.value};
+    console.log(img)
 
-    const data ={title,content,category,price,priceConsulation}
+    const data ={title,content,category,price,priceConsulation ,img}
   
     
 
-    axios
-    .post("/api/products", data)
-    .then((res) => {
-      if((res.data)=null){
-        alert('상품등록이 잘 되지않았습니다 ')
-      }else {
-        console.log(res.data);
-        window.location.href= "/products"
-      }
-    });
+    // axios
+    // .post("/api/products", data)
+    // .then((res) => {
+    //   if((res.data)=null){
+    //     alert('상품등록이 잘 되지않았습니다 ')
+    //   }else {
+    //     console.log(res.data);
+    //     window.location.href= "/products"
+    //   }
+    // });
     }
     
   
@@ -43,27 +45,26 @@ function InputProduct(){
     const categoryRef= useRef("음식 및 기타");
     const priceRef=useRef(0)
     const priceConsulationRef=useRef("");
+    const imgRef=useRef("파일 업로드")
 
     return (
-      <div >
+      <div style={{maxWidth:'700px', margin:'2rem auto'}}>
           
        
-        <Form onSubmit={onSubmitHandling}>
+        <Form onSubmit={onSubmitHandling} >
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>글제목</Form.Label>
+        
         <Form.Control type="text" placeholder={titleRef.current} ref={titleRef}/>
-        
+        <div style={{maxWidth:'700px', margin:'2rem auto'}}></div>
         <Form.Label>사진</Form.Label>
-        <div style={{maxWidth:'700px', margin:'2rem auto'}}>
-          <div style ={{textAlign:'center',marginBotton:'2rem'}}>
-          <Form.Control />
-          </div>
-        </div>
-        
+        <Form.Control type="file" ref={imgRef} id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"/>
 
+        <div style={{maxWidth:'700px', margin:'2rem auto'}}></div>
         <Form.Label>가격</Form.Label>
         <Form.Control type="number" placeholder={priceRef.current} ref={priceRef}/>
 
+        <div style={{maxWidth:'700px', margin:'2rem auto'}}></div>
         <Form.Label>가격제안 설정</Form.Label>
       <Form.Select aria-label="Default select example" ref={priceConsulationRef}>
       <option value="가격제안 가능">가격제안 가능</option>
@@ -83,6 +84,8 @@ function InputProduct(){
     </Form.Select>
       <button>작성완료</button>
     </Form>
+
+
     
        
         

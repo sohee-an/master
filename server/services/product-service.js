@@ -1,4 +1,5 @@
 import { productModel } from "../db";
+import multer from 'multer'
 
 class ProductService {
     constructor(productModel) {
@@ -7,7 +8,7 @@ class ProductService {
 
     async addProduct(productInfo) {
         
-        const {title,content,category,price,priceConsulation}=productInfo
+        const {title,content,category,price,priceConsulation,img}=productInfo
        
     console.log(title.title);
     const newProductInfo= {
@@ -15,7 +16,8 @@ class ProductService {
         content:content.content,
         category:category.category,
         price:price.price,
-        priceConsulation:priceConsulation.priceConsulation
+        priceConsulation:priceConsulation.priceConsulation,
+        img:img.img
     }
     console.log("!!!!!!!!!")
     console.log(newProductInfo)
@@ -25,8 +27,8 @@ class ProductService {
         //     throw new Error("이미 등록된 상품입니다.");
         // }
 
-        const createProduct = await this.productModel.create(newProductInfo);
-         return createProduct;
+        // const createProduct = await this.productModel.create(newProductInfo);
+        //  return createProduct;
     }
 
     async getProductAll() {
