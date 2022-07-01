@@ -31,10 +31,9 @@ const UserSchema = new Schema(
       ),
      // required: true,
     },
-    like:{
-      type: Schema.Types.ObjectId,
-    ref: 'products',
-    //required: true,
+   
+    token:{
+      type:String,
     },
    
     role: {

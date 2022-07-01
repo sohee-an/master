@@ -13,8 +13,8 @@ class ProductModel {
 
     async findAll() {
         console.log("모델 들어옴")
-        const products = await Product.find({});
-        console.log(products)
+        const products = await Product.find({}).populate('userId')
+       
         return products;
     }
 

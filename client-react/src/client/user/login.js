@@ -26,14 +26,17 @@ function Loign(){
           password:inputPwd
         }
         axios.post("/api/user/login", body)
-        .then((res) => { 
-          if((res.data)===null){
+        .then((res) => {  
+         
+        const user=res.data
+        console.log(user.token)
+          if((user.token)==undefined){
             alert('등론된 아이디가 없거나 비밀번호나 아이디가 틀립니다 ')
           }else {
             console.log(res.data)
             setUser(res.data)
-            console.log(user)
             localStorage.setItem('token',user.token);
+            localStorage.setItem('role',user.role)
             window.location.href = '/';
             
           }
@@ -41,18 +44,6 @@ function Loign(){
 
 
 
-        //   .then((res)=>{
-        //     if(res===undefined){
-        //       alert('등록된 아이디가 없거나  비밀번호나 아이디가 틀립니다 ')
-        //   }else {
-        //       localStorage.setItem('token',user.token);
-        //      console.log(user)
-        //      window.location.href = '/';
- 
-        //   }
-        // }
-
-         // )
     
         }
         

@@ -17,13 +17,14 @@ const ProductSchema = new Schema({
         type: String,
         //required: true
     },
-    email: {
+    userId: {
         type: String,
+        ref: 'users',
         //required: true
     },
     nickName: {
         type: String,
-        //ref: "categories",
+       
         //required: true
     },
     image: {

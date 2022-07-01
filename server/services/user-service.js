@@ -64,13 +64,19 @@ class UserService {
     console.log(email)
 
     // 우선 해당 이메일의 사용자 정보가  db에 존재하는지 확인
-    const user = await this.userModel.findByEmail(email);
 
-    if (!user) {
-      throw new Error(
-        '해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.'
-      );
+    
+    const user = await this.userModel.findByEmail(email);
+    if (!user){
+      return ('해당 이메일은 가입 내역이 없습니다 다시 한 번 확인해 주세요 ')
     }
+  
+
+    // if (!user) {
+    //   throw new Error(
+    //     '해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.'
+    //   );
+    // }
 
     // 이제 이메일은 문제 없는 경우이므로, 비밀번호를 확인함
 
@@ -82,12 +88,14 @@ class UserService {
       password,
       correctPasswordHash
     );
-
-    if (!isPasswordCorrect) {
-      throw new Error(
-        '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
-      );
-    }
+        if(!isPasswordCorrect){
+          return ('비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요')
+        }
+    // if (!isPasswordCorrect) {
+    //   throw new Error(
+    //     '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
+    //   );
+    // }
 
     // 로그인 성공 -> JWT 웹 토큰 생성
     const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
@@ -98,6 +106,17 @@ class UserService {
 
     return { token, role: user.role };
   }
+//유저 안에 좋아요 누르기 
+async saveLike(productId,userId){
+  const like = {like:productId.productId}
+  console.log(like)
+    const saveLike= await this.userModel.createLike(like,userId);
+    return saveLike;
+}
+
+
+
+
 
   // 사용자 목록을 받음.
   async getUsers() {

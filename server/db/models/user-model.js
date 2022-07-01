@@ -25,6 +25,16 @@ console.log(User);
     return users;
   }
 
+  ////유저 like 넣어서 저장하기 
+  async createLike(like ,userId){
+  const filter ={_id:userId};
+  console.log(filter)
+ const option ={returnOriginal: false};
+    const createProductId =await User.findOneAndUpdate(filter,like,option)
+    console.log(createProductId);
+    //return createProductId;
+  }
+//// 이 밑에꺼는 like 저장하는건데 다른거 되면 삭제하기 
   async update({ userId, update }) {
     const filter = { _id: userId };
     const option = { returnOriginal: false };

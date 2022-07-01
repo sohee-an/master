@@ -37,7 +37,7 @@ function Products(){
         <Card.Text>
            {product[i].content}
         </Card.Text>
-        <div> 올린사람 :{product[i].email}</div>
+        <div> 올린사람 :{product[i].userId.email}</div>
         <Card.Text>
            {product[i].category}
         </Card.Text>

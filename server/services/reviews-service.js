@@ -12,6 +12,20 @@ class ReviewService {
     const addedReview = await this.reviewModel.addReview(reviews);
     return addedReview;
 
+  }// 좋아요 부분 저장하기 
+  async addLike(like){
+    const creatLike=await this.reviewModel.addLkie(like);
+    return creatLike;
+  }
+  // 제품의 좋아요 부분 찾아오기 
+  async findLike(productId){
+    const findLike=await this.reviewModel.findLike(productId);
+    const userId = findLike.userId._id;
+    const findproductId=findLike._id;
+    console.log(findproductId)
+    console.log(userId)
+    
+   // return findLike;
   }
 
   async productRevewUpdate(productId, rating) {

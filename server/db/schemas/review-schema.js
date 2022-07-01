@@ -12,14 +12,7 @@ const ReviwsSchema = new Schema({
     required: true,
   },
 
-  reviewText: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    required: true,
-  }
+ 
 },
   {
     collection: 'reviews',

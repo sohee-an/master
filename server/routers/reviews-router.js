@@ -33,6 +33,42 @@ reviwRouter.post('/', loginRequired, async (req, res, next) => {
     }
 });
 
+reviwRouter.post('/like',loginRequired,async(req,res,next)=>{
+    try{
+        const userId = req.currentUserId;
+        const productId = req.body.productId
+        
+        const creatLike =await reviewService.addLike({
+            userId,
+            productId
+        })
+        return creatLike;
+
+    }catch (error){
+        next(error)
+    }
+})
+
+// 사이트 열때 무엇을 like했는지 보여준다
+reviwRouter.get('/productLike',loginRequired,async(req,res,next)=>{
+    try{
+        const userId = req.currentUserId;
+        console.log(userId)
+        const productId=req.query.productId
+       // console.log(req.body)
+        //const productId = req.body.productId
+        console.log("!!!!!!!들어왔냐!!!!!!!")
+        console.log(productId);
+        
+        const findLike= await reviewService.findLike(productId);
+        console.log(findLike)
+        return findLike;
+
+    }catch(error){
+        next(error)
+    }
+})
+
 
 
 // 상품에 대한 별점의 평균 그리고 전체 리뷰수 

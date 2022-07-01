@@ -1,5 +1,6 @@
 import { productModel } from "../db";
 import multer from 'multer'
+import res from "express/lib/response";
 
 class ProductService {
     constructor(productModel) {
@@ -8,16 +9,18 @@ class ProductService {
 
     async addProduct(productInfo) {
         
-        const {title,content,category,price,priceConsulation,img}=productInfo
+        const {title,content,category,price,priceConsulation,userId}=productInfo
+        
+ 
        
-    console.log(title.title);
+   
     const newProductInfo= {
         title:title.title,
         content:content.content,
         category:category.category,
         price:price.price,
         priceConsulation:priceConsulation.priceConsulation,
-        img:img.img
+        userId
     }
     console.log("!!!!!!!!!")
     console.log(newProductInfo)
@@ -27,15 +30,14 @@ class ProductService {
         //     throw new Error("이미 등록된 상품입니다.");
         // }
 
-        // const createProduct = await this.productModel.create(newProductInfo);
-        //  return createProduct;
+         const createProduct = await this.productModel.create(newProductInfo);
+          return createProduct;
     }
 
     async getProductAll() {
         const products = await this.productModel.findAll();
-        //const productsLike= await this.productModel.findLike();
-        console.log("!!!!!!!!!!!!!!!!!!!!")
-        console.log(products)
+    console.log(products)
+    
         
         return products;
     }

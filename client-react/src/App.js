@@ -62,6 +62,9 @@ console.log(token)
       console.log(err)
    }
  }
+ useEffect(()=>{
+   axios.get('/',)
+ })
  
  
   
